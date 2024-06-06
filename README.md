@@ -13,6 +13,8 @@
 - Manipulate stock (positive adjustments, negative adjustments)
 
 ### Database Structure
-- Table "Product"/"Item" (name, description)
-- Table "Area" (name/code, description)
-- Table "Adjustment" (date, item, area, quantity, positive or negative)
+- Table "Product" (Code, Description)
+- Table "Area" (Code, Description)
+- Table "Adjustment" (Product, Area, Date, Quantity)
+
+![Database Design](/DatabaseDesign/erm_basic.jpg?raw=true "Inventory Management Tool")
