@@ -4,9 +4,129 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryManagementToolUI"
+        xmlns:p="clr-namespace:InventoryManagementToolUI.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="{x:Static p:Resources.MW_TITLE}" Height="450" Width="800" WindowStartupLocation="CenterScreen" WindowState="Maximized" FontFamily="Rubik" FontSize="16" Icon="/Assets/IM_darkgray_near_black_background_24x24.png"
+        Background="#dce1de">
+    <Window.Resources>
+        <ResourceDictionary>
 
+            <!-- Base colors start -->
+            <SolidColorBrush x:Key="BrushGray" Color="{StaticResource ResourceKey=AppGray}"/>
+            <SolidColorBrush x:Key="BrushBlack" Color="{StaticResource ResourceKey=AppBlack}"/>
+            <SolidColorBrush x:Key="BrushDarkGreen" Color="{StaticResource ResourceKey=AppDarkGreen}" />
+            <SolidColorBrush x:Key="BrushMiddleGreen" Color="{StaticResource ResourceKey=AppMiddleGreen}" />
+            <SolidColorBrush x:Key="BrushLightGreen" Color="{StaticResource ResourceKey=AppLightGreen}" />
+            <!-- Base colors end -->
+
+            <!-- Base label start -->
+            <Style x:Key="BaseLabelStyle" BasedOn="{StaticResource {x:Type Label}}" TargetType="Label">
+                <Setter Property="Background" Value="{StaticResource BrushGray}"/>
+                <Setter Property="Foreground" Value="{StaticResource BrushBlack}"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+            <!-- Base label end -->
+            
+            <!-- TextBox start -->
+            <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+                <Setter Property="Background" Value="{StaticResource BrushLightGreen}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource BrushDarkGreen}"/>
+                <Setter Property="Foreground" Value="{StaticResource BrushBlack}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="5,0" />
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="AllowDrop" Value="true"/>
+                <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                                <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BrushBlack}"/>
+                                </Trigger>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BrushBlack}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsSelectionActive" Value="True">
+                        <Setter Property="SelectionBrush" Value="{StaticResource BrushMiddleGreen}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!-- TextBox end -->
+
+            <!-- Functional buttons start -->
+            <Style x:Key="FunctionalButtonStyle" BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Name="Border"
+                                    Background="{StaticResource BrushDarkGreen}"
+                                    Margin="5,5,5,5"
+                                    CornerRadius="5"
+                                    BorderThickness="2"
+                                    BorderBrush="{StaticResource BrushDarkGreen}"
+                                    Padding="5">
+                                <ContentPresenter Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="{StaticResource BrushBlack}" TargetName="Border"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource BrushGray}" TargetName="Border"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="{StaticResource BrushMiddleGreen}" TargetName="Border"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Foreground" Value="{StaticResource BrushGray}" />
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Style.Triggers>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Foreground" Value="{StaticResource BrushBlack}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!-- Functional buttons end -->
+
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="{x:Static p:Resources.MW_SERVER_LABEL}" Style="{DynamicResource BaseLabelStyle}"/>
+            <TextBox Width="200" Style="{DynamicResource TextBoxStyle}" IsReadOnly="True"></TextBox>
+            <Label Content="{x:Static p:Resources.MW_DATABASE_LABEL}" Style="{DynamicResource BaseLabelStyle}"/>
+            <TextBox Width="200" Style="{DynamicResource TextBoxStyle}" IsReadOnly="True"></TextBox>
+            <Button Content="{x:Static p:Resources.MW_SETUP_BUTTON}" Style="{DynamicResource FunctionalButtonStyle}"></Button>
+        </StackPanel>
     </Grid>
 </Window>
