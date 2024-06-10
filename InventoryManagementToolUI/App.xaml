@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:InventoryManagementToolUI"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="FontFamily" Value="Rubik" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+
+        <Color x:Key="AppGray">#dce1de</Color>
+        <Color x:Key="AppBlack">#1f2421</Color>
+        <Color x:Key="AppDarkGreen">#216869</Color>
+        <Color x:Key="AppMiddleGreen">#49a078</Color>
+        <Color x:Key="AppLightGreen">#9cc5a1</Color>
+
     </Application.Resources>
 </Application>
